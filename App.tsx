@@ -1,9 +1,10 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import {Text} from 'react-native';
 import useCachedResources from "hooks/useCachedResources";
 import useColorScheme from "hooks/useColorScheme";
 import {SafeAreaProvider} from "react-native-safe-area-context";
 import CustomThemedProvider from "theme/CustomThemedProvider";
+import { NavigationContainer } from '@react-navigation/native';
+
 
 export default function App() {
   const isLoadingComplete = useCachedResources();
@@ -15,7 +16,9 @@ export default function App() {
     return (
       <SafeAreaProvider>
         <CustomThemedProvider>
-          <Text>Hola Mundo que hace</Text>
+          <NavigationContainer>
+            <Text>Hola Mundo que hace</Text>
+          </NavigationContainer>
         </CustomThemedProvider>
       </SafeAreaProvider>
     );

@@ -12,6 +12,7 @@ web-build/
 
 # macOS
 .DS_Store
+/.idea/*
 /.idea/.gitignore
 /.idea/Canty.iml
 /.idea/modules.xml
