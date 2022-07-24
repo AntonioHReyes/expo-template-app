@@ -4,6 +4,7 @@ import useColorScheme from "hooks/useColorScheme";
 import {SafeAreaProvider} from "react-native-safe-area-context";
 import CustomThemedProvider from "theme/CustomThemedProvider";
 import { NavigationContainer } from '@react-navigation/native';
+import {BottomTabNavigator} from "navigation/BottomTabNavigation";
 
 
 export default function App() {
@@ -17,7 +18,7 @@ export default function App() {
       <SafeAreaProvider>
         <CustomThemedProvider>
           <NavigationContainer>
-            <Text>Hola Mundo que hace</Text>
+            <BottomTabNavigator />
           </NavigationContainer>
         </CustomThemedProvider>
       </SafeAreaProvider>
