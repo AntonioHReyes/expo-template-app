@@ -2,10 +2,11 @@ import useCachedResources from "hooks/useCachedResources";
 import useColorScheme from "hooks/useColorScheme";
 import {SafeAreaProvider} from "react-native-safe-area-context";
 import CustomThemedProvider from "theme/CustomThemedProvider";
-import {NavigationContainer} from '@react-navigation/native';
+import {DarkTheme, DefaultTheme, NavigationContainer} from '@react-navigation/native';
 import {BottomTabNavigator} from "navigation/BottomTabNavigation";
 import {darkTheme, lightTheme} from "theme/StyledThemes";
 import {useEffect, useState} from "react";
+import Colors from "theme/colors/ThemeColors";
 
 
 export default function App() {
@@ -34,13 +35,28 @@ export default function App() {
     }
   }, [colorScheme])
 
+  const getNavigationTheme = () => {
+
+    let navigationTheme = colorScheme === 'dark' ? DarkTheme : DefaultTheme
+
+    return {
+      ...navigationTheme,
+      colors: {
+        ...navigationTheme.colors,
+        background: Colors[colorScheme].themeBackground,
+        card: Colors[colorScheme].navigationCardBackground,
+        text: Colors[colorScheme].text
+      },
+    };
+  }
+
   if (!isLoadingComplete) {
     return null;
   } else {
     return (
       <SafeAreaProvider>
         <CustomThemedProvider theme={appTheme}>
-          <NavigationContainer>
+          <NavigationContainer theme={getNavigationTheme()}>
             <BottomTabNavigator />
           </NavigationContainer>
         </CustomThemedProvider>
