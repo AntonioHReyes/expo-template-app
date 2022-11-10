@@ -1,6 +1,6 @@
-import {_baseColors} from "theme/colors/_baseColors";
+import {BaseColors} from "theme/colors/BaseColors";
 
-export interface Colors extends _baseColors {
+export interface Colors extends BaseColors {
   themeBaseColor: string
   themeBackground: string
   navigationCardBackground: string

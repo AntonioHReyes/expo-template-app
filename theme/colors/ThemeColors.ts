@@ -1,8 +1,9 @@
-import {light} from "theme/colors/_light";
-import {dark} from "theme/colors/_dark";
+import {Light} from "theme/colors/Light";
+import {Dark} from "theme/colors/Dark";
 
 const ThemeColors = {
-   light, dark
+  light: Light,
+  dark: Dark
 }
 
 export default ThemeColors;
