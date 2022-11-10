@@ -1,7 +1,7 @@
-import {_baseColors as baseColors} from './_baseColors'
+import {BaseColorsImpl as baseColors} from 'theme/colors/BaseColors'
 import {Colors} from "theme/colors/Colors";
 
-export const light: Colors = {
+export const Light: Colors = {
 
     themeBaseColor: baseColors.white,
 

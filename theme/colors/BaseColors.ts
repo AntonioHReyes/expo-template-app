@@ -2,7 +2,7 @@
   https://www.color-blindness.com/color-name-hue/ or http://chir.ag/projects/name-that-color/#3C3C3B
 */
 
-export interface _baseColors {
+export interface BaseColors {
   transparent: string
   white: string
   black: string
@@ -16,7 +16,7 @@ export interface _baseColors {
   dodgerBlue: string
 }
 
-export const _baseColors: _baseColors = {
+export const BaseColorsImpl: BaseColors = {
   /* Colores genericos de la aplicación */
   transparent: "#00000000",
   white: '#FFFFFF',
