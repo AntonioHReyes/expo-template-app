@@ -1,4 +1,5 @@
 import useCachedResources from "hooks/useCachedResources";
+import {StatusBar, StatusBarStyle, useWindowDimensions} from 'react-native';
 import useColorScheme from "hooks/useColorScheme";
 import {SafeAreaProvider} from "react-native-safe-area-context";
 import CustomThemedProvider from "theme/CustomThemedProvider";
@@ -7,6 +8,7 @@ import {BottomTabNavigator} from "navigation/BottomTabNavigation";
 import {darkTheme, lightTheme} from "theme/StyledThemes";
 import {useEffect, useState} from "react";
 import Colors from "theme/colors/ThemeColors";
+import {Printer} from "utils/Printer";
 
 
 export default function App() {
@@ -14,26 +16,38 @@ export default function App() {
   const colorScheme = useColorScheme();
 
   const [appTheme, setAppTheme] = useState(lightTheme)
+  const [statusBarStyle, setStatusBarStyle] = useState<StatusBarStyle>('default')
+
+  const dimensions = useWindowDimensions();
 
   useEffect(() => {
-    console.log("Estamos cambiando", colorScheme)
+
+    let extraDimensions = {
+      vwPx: dimensions.width / 100,
+      vhPx: dimensions.height / 100
+    }
+
+    Printer.log("Estamos cambiando", colorScheme, dimensions)
     switch (colorScheme) {
       case "light": {
-        setAppTheme(lightTheme)
+        setAppTheme({...lightTheme, screenDimens: {...dimensions, ...extraDimensions}})
+        setStatusBarStyle('default')
         break
       }
       case "dark": {
-        setAppTheme(darkTheme)
+        setAppTheme({...darkTheme, screenDimens: {...dimensions, ...extraDimensions}})
+        setStatusBarStyle('light-content')
         break
       }
 
       default: {
-        setAppTheme(lightTheme)
+        setAppTheme({...lightTheme, screenDimens: {...dimensions, ...extraDimensions}})
+        setStatusBarStyle('default')
         break
       }
 
     }
-  }, [colorScheme])
+  }, [colorScheme, dimensions])
 
   const getNavigationTheme = () => {
 
@@ -55,6 +69,7 @@ export default function App() {
   } else {
     return (
       <SafeAreaProvider>
+        <StatusBar barStyle={statusBarStyle}/>
         <CustomThemedProvider theme={appTheme}>
           <NavigationContainer theme={getNavigationTheme()}>
             <BottomTabNavigator />
